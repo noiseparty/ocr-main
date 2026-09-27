@@ -1,0 +1,86 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 2446 >>
+stream
+BT /F2 18 Tf 1 0 0 1 50 772 Tm (Northwind Studio SIA) Tj ET
+BT /F2 22 Tf 1 0 0 1 454.54 772 Tm (INVOICE) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 750 Tm (Elizabetes iela 21, Riga, LV-1010) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 736 Tm (VAT reg. no. LV40103999999) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 722 Tm (hello@northwind.example) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 410.86 742 Tm (Invoice number: INV-2026-0142) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 434.61 728 Tm (Invoice date: 12 Sep 2026) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 449.41 714 Tm (Due date: 12 Oct 2026) Tj ET
+BT /F2 9.5 Tf 1 0 0 1 50 670 Tm (Bill to:) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 654 Tm (Baltic Freight SIA) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 640 Tm (Krasta iela 42, Riga, LV-1003) Tj ET
+q 0.92 g 50 580 495 22 re f Q
+BT /F2 9.5 Tf 1 0 0 1 58 587 Tm (Description) Tj ET
+BT /F2 9.5 Tf 1 0 0 1 344.16 587 Tm (Qty) Tj ET
+BT /F2 9.5 Tf 1 0 0 1 406.19 587 Tm (Unit price) Tj ET
+BT /F2 9.5 Tf 1 0 0 1 501.12 587 Tm (Amount) Tj ET
+BT /F1 10 Tf 1 0 0 1 58 554 Tm (Brand workshop \(half day\)) Tj ET
+BT /F1 10 Tf 1 0 0 1 354.44 554 Tm (1) Tj ET
+BT /F1 10 Tf 1 0 0 1 419.41 554 Tm (850.00) Tj ET
+BT /F1 10 Tf 1 0 0 1 506.41 554 Tm (850.00) Tj ET
+q 0.85 G 0.6 w 50 545 m 545 545 l S Q
+BT /F1 10 Tf 1 0 0 1 58 530 Tm (Landing page design) Tj ET
+BT /F1 10 Tf 1 0 0 1 354.44 530 Tm (1) Tj ET
+BT /F1 10 Tf 1 0 0 1 411.07 530 Tm (1,200.00) Tj ET
+BT /F1 10 Tf 1 0 0 1 498.07 530 Tm (1,200.00) Tj ET
+q 0.85 G 0.6 w 50 521 m 545 521 l S Q
+BT /F1 10 Tf 1 0 0 1 58 506 Tm (Illustration set) Tj ET
+BT /F1 10 Tf 1 0 0 1 354.44 506 Tm (6) Tj ET
+BT /F1 10 Tf 1 0 0 1 424.98 506 Tm (45.00) Tj ET
+BT /F1 10 Tf 1 0 0 1 506.41 506 Tm (270.00) Tj ET
+q 0.85 G 0.6 w 50 497 m 545 497 l S Q
+BT /F1 10 Tf 1 0 0 1 58 482 Tm (Copy editing \(hours\)) Tj ET
+BT /F1 10 Tf 1 0 0 1 346.1 482 Tm (3.5) Tj ET
+BT /F1 10 Tf 1 0 0 1 424.98 482 Tm (60.00) Tj ET
+BT /F1 10 Tf 1 0 0 1 506.41 482 Tm (210.00) Tj ET
+q 0.85 G 0.6 w 50 473 m 545 473 l S Q
+BT /F1 10 Tf 1 0 0 1 380 442 Tm (Subtotal) Tj ET
+BT /F1 10 Tf 1 0 0 1 498.07 442 Tm (2,530.00) Tj ET
+BT /F1 10 Tf 1 0 0 1 380 424 Tm (VAT 21%) Tj ET
+BT /F1 10 Tf 1 0 0 1 506.41 424 Tm (531.30) Tj ET
+q 0.2 G 0.6 w 380 415 m 545 415 l S Q
+BT /F2 11.5 Tf 1 0 0 1 380 398 Tm (Total due \(EUR\)) Tj ET
+BT /F2 11.5 Tf 1 0 0 1 485.84 398 Tm (Ä3,061.30) Tj ET
+BT /F1 8.5 Tf 1 0 0 1 50 82 Tm (Payment: bank transfer to IBAN LV12HABA0551234567890 within 30 days.) Tj ET
+BT /F1 8.5 Tf 1 0 0 1 50 68 Tm (Thank you for your business.) Tj ET
+
+endstream
+endobj
+7 0 obj
+<< /Title (Invoice INV-2026-0142 \(sample\)) /Producer (Cosmic sample generator) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000257 00000 n 
+0000000354 00000 n 
+0000000456 00000 n 
+0000002954 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+3053
+%%EOF

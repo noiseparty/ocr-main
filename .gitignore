@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+.env
+.env.*
+!.env.example
+# copied from node_modules by scripts/copy-vendor.mjs on every dev/build
+public/vendor
+test-results
+*.log

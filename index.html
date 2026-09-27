@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Receipt Reader — Cosmic demo</title>
+    <meta name="description" content="Drop a receipt or invoice — PDF or photo — and get structured spreadsheet rows back: merchant, date, VAT and every line item, checked against the total. Runs entirely in your browser." />
+    <meta property="og:title" content="Receipt Reader — Cosmic demo" />
+    <meta property="og:description" content="Receipts and invoices to spreadsheet rows, in the browser. Your file never leaves your device." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#03040a" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="/demo/ocr/favicon.svg" type="image/svg+xml" />
+    <!-- Shared platform tokens, served by the shell on this origin. The page's own CSS
+         carries fallbacks for every token it uses, so it survives this failing to load. -->
+    <link rel="stylesheet" href="/theme.css" />
+  </head>
+  <body class="rr">
+    <div class="grain" aria-hidden="true"></div>
+    <a class="skip" href="#tool">Skip to the tool</a>
+
+    <header class="topbar">
+      <a class="wordmark" href="https://www.skabene.id.lv/" aria-label="Cosmic — portfolio home">
+        <span class="wordmark-name">COSMIC</span><span class="wordmark-sub">/ DEMO</span>
+      </a>
+      <a class="back label" href="https://www.skabene.id.lv/#work"><span aria-hidden="true">←</span> ALL WORK</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <p class="kicker label"><i aria-hidden="true"></i>DEMO 01 / DOCUMENT PROCESSING</p>
+        <h1 id="title" class="display">Receipt Reader</h1>
+        <p class="lede">Drop a receipt or invoice — PDF or photo — and get clean spreadsheet rows back: merchant, date, VAT and every line item, checked against the total.</p>
+      </section>
+
+      <section id="tool" class="panel tool" aria-label="Receipt Reader">
+        <div class="intake">
+          <div class="drop" id="drop">
+            <input id="file" type="file" accept="application/pdf,image/png,image/jpeg,image/webp,image/gif,image/bmp,.pdf,.png,.jpg,.jpeg,.webp" multiple hidden />
+            <button type="button" class="drop-btn" id="pick" aria-describedby="drop-hint">
+              <svg class="drop-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0-4.5 4.5M12 4l4.5 4.5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+              <span class="drop-title">Drop receipts or invoices here</span>
+              <span class="drop-sub" id="drop-hint">PDF, JPG, PNG, WEBP · several at once · or <u>choose files</u> · or paste an image</span>
+            </button>
+          </div>
+          <div class="samples">
+            <p class="label samples-head">No file handy? <span>Try a sample</span></p>
+            <ul class="sample-list" id="samples"></ul>
+          </div>
+          <p class="privacy" id="privacy">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v7h-9z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+            <span><b>Your file never leaves your browser.</b> Text is read on this device by pdf.js and a WebAssembly build of Tesseract. This server has no upload endpoint — open your browser's network tab and watch.</span>
+          </p>
+        </div>
+
+        <div class="docbar" id="docbar" hidden>
+          <div class="tabs" id="tabs" role="tablist" aria-label="Documents"></div>
+          <div class="exports" id="exports">
+            <span class="k" id="export-count"></span>
+            <button type="button" class="btn" data-export="xlsx">XLSX</button>
+            <button type="button" class="btn" data-export="csv">CSV</button>
+            <button type="button" class="btn" data-export="json">JSON</button>
+            <button type="button" class="btn btn-accent" data-export="tsv">Copy for Sheets</button>
+          </div>
+        </div>
+
+        <div class="workspace" id="workspace">
+          <div class="empty" id="empty">
+            <p class="display empty-title">Nothing read yet</p>
+            <p>Pick a sample above, or drop your own receipt. The first photo takes a few seconds longer: the OCR engine and its English + Latvian models (about 7 MB) download once and are then cached.</p>
+          </div>
+        </div>
+      </section>
+
+      <p class="sr-only" id="announce" aria-live="polite"></p>
+
+      <section class="panel how" aria-labelledby="how-title">
+        <h2 id="how-title" class="label how-title">How it works</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-n mono">01</span>
+            <h3 class="step-t">Read</h3>
+            <p>A PDF with a text layer is read directly by pdf.js: exact characters, no guessing. Scans and photos are deskewed and read by Tesseract's LSTM engine (English + Latvian), compiled to WebAssembly and run in a worker thread in your browser.</p>
+          </li>
+          <li>
+            <span class="step-n mono">02</span>
+            <h3 class="step-t">Rebuild rows</h3>
+            <p>OCR returns words with coordinates, not lines. Rows are rebuilt from geometry, so a table that page segmentation cut into a names column and a prices column comes back together, and two header columns on one baseline are split apart.</p>
+          </li>
+          <li>
+            <span class="step-n mono">03</span>
+            <h3 class="step-t">Parse</h3>
+            <p>A deterministic parser, with no AI model, finds the totals block first (KOPĀ, Total due, PVN 21%), then reads the item lines above it: <span class="mono">2 x 1,50</span>, <span class="mono">3 gab</span>, <span class="mono">0,845 kg x 1,49 EUR/kg</span>, comma decimals, discounts, dd.mm.yyyy dates.</p>
+          </li>
+          <li>
+            <span class="step-n mono">04</span>
+            <h3 class="step-t">Cross-check</h3>
+            <p>Items are summed against the total, subtotal plus VAT against the total, and VAT against its rate. When the numbers agree, confidence goes up. When they don't, the check says by how much and the doubtful cells are highlighted for you to fix.</p>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span class="label">Built by Cosmic · Riga</span>
+      <a class="label" href="https://www.skabene.id.lv/#contact">Start a project <span aria-hidden="true">→</span></a>
+    </footer>
+
+    <noscript><p class="noscript">This demo reads documents in your browser, so it needs JavaScript.</p></noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
