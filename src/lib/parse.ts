@@ -61,6 +61,8 @@ export function classify(text: string): Classified {
     const word = f.match(RE_TOTAL)?.[1];
     return { kind: 'total', priority: word === 'summa' || word === 'kopsumma' ? 1 : 2 };
   }
+  // "Atlaide ar lojalitātes karti  -1,20" names a card but is a priced row, not payment noise.
+  if (RE_DISCOUNT.test(f) && findAmounts(text).length) return { kind: 'other', priority: 0 };
   if (RE_NOISE.test(f)) return { kind: 'noise', priority: 0 };
   return { kind: 'other', priority: 0 };
 }
@@ -177,7 +179,8 @@ function viaColumns(text: string): ParsedItemLine | null {
   const nums: Num[] = [];
   while (tokens.length) {
     const last = tokens[tokens.length - 1]!;
-    if (nums.length && RE_UOM.test(last)) {
+    // a unit between columns, unless it is the only word left ("Hours 7,5 40,00 300,00")
+    if (nums.length && tokens.length > 1 && RE_UOM.test(last)) {
       tokens.pop();
       continue;
     }

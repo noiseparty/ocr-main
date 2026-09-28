@@ -77,7 +77,8 @@ function plain(c: Cell): string {
  * untrusted text, so neutralise it the way OWASP suggests: a leading apostrophe.
  */
 function safeText(s: string): string {
-  return /^[=+\-@\t\r]/.test(s) && !/^-?\d/.test(s) ? `'${s}` : s;
+  // Exempt only a plain negative number: "-2+3+cmd|' /C calc'!A0" also starts with -digit.
+  return /^[=+\-@\t\r]/.test(s) && !/^-\d+(?:[.,]\d+)?$/.test(s) ? `'${s}` : s;
 }
 
 function csvField(c: Cell, sep: string): string {

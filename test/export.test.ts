@@ -28,8 +28,8 @@ describe('CSV / TSV', () => {
     expect(csv).toContain('"Piens 2,5% 1L",2,0.99,1.98');
   });
   it('defuses formula-looking text', () => {
-    const t = { name: 'x', header: ['a'], rows: [['=HYPERLINK("x")'], ['-12.5'], ['@cmd']], widths: [5] };
-    expect(toCSV(t).split('\r\n').slice(1, 4)).toEqual([`"'=HYPERLINK(""x"")"`, '-12.5', "'@cmd"]);
+    const t = { name: 'x', header: ['a'], rows: [['=HYPERLINK("x")'], ['-12.5'], ['@cmd'], ["-2+3+cmd|' /C calc'!A0"]], widths: [5] };
+    expect(toCSV(t).split('\r\n').slice(1, 5)).toEqual([`"'=HYPERLINK(""x"")"`, '-12.5', "'@cmd", "'-2+3+cmd|' /C calc'!A0"]);
   });
   it('writes a TSV that pastes into a spreadsheet', () => {
     const tsv = toTSV(itemsTable(docs));

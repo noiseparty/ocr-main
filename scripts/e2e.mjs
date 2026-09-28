@@ -27,10 +27,10 @@ mkdirSync('test-results', { recursive: true });
 const origin = new URL(URL_).origin;
 
 const EXPECT = {
-  'lv-veikals.png': { merchant: /Daugavas Bode/, date: '2026-09-28', total: '12.46', items: 7 },
-  'invoice-en.pdf': { merchant: /Northwind Studio SIA/, date: '2026-09-12', total: '3061.30', items: 4 },
-  'kafejnica-photo.jpg': { merchant: /ZIEDONIS/i, date: '2026-09-27', total: '21.60', items: 5 },
-  'rekins-scan.pdf': { merchant: /Kurzemes Koks/, date: '2026-09-03', total: '211.02', items: 3 },
+  'lv-veikals.png': { merchant: /Daugavas Bode/, date: '2026-09-28', total: '12.46', subtotal: '10.30', vatAmount: '2.16', items: 7 },
+  'invoice-en.pdf': { merchant: /Northwind Studio SIA/, date: '2026-09-12', total: '3061.30', subtotal: '2530.00', vatAmount: '531.30', items: 4 },
+  'kafejnica-photo.jpg': { merchant: /ZIEDONIS/i, date: '2026-09-27', total: '21.60', subtotal: '17.85', vatAmount: '3.75', items: 5 },
+  'rekins-scan.pdf': { merchant: /Kurzemes Koks/, date: '2026-09-03', total: '211.02', subtotal: '174.40', vatAmount: '36.62', items: 3 },
 };
 
 const browser = await chromium.launch({ executablePath, headless: true });
@@ -95,6 +95,9 @@ for (const [i, name] of Object.keys(EXPECT).entries()) {
   if (!exp.merchant.test(got.merchant ?? '')) problems.push(`merchant ${got.merchant}`);
   if (got.date !== exp.date) problems.push(`date ${got.date}`);
   if (got.total !== exp.total) problems.push(`total ${got.total}`);
+  if (got.subtotal !== exp.subtotal) problems.push(`subtotal ${got.subtotal}`);
+  if (got.vatAmount !== exp.vatAmount) problems.push(`vat ${got.vatAmount}`);
+  if (got.checks.some((c) => c.startsWith('warn'))) problems.push('a cross-check warns');
   if (got.items.length !== exp.items) problems.push(`items ${got.items.length}`);
   results[name] = { secs, ...got, problems };
   console.log(`\n=== ${name} (${secs}s) ${problems.length ? 'MISMATCH: ' + problems.join('; ') : 'OK'}`);
