@@ -7,7 +7,8 @@ import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { clientIp, TokenBuckets } from './limits.js';
 
-export const BASE = '/demo/ocr/';
+/** Served at the root of ocr.skabene.id.lv. Set a prefix (with trailing slash) to mount it under a path. */
+export const BASE: string = '/';
 const PORT = Number(process.env.PORT ?? 3101);
 const HOST = process.env.HOST ?? '0.0.0.0';
 const DIST = resolve(process.env.DIST_DIR ?? join(fileURLToPath(new URL('.', import.meta.url)), '..', '..', 'dist'));
@@ -124,7 +125,7 @@ export function handle(req: IncomingMessage, res: ServerResponse) {
     return json(res, 429, { error: 'Too many requests from your address. Wait a few seconds and try again.' }, { 'Retry-After': String(wait) });
   }
 
-  if (path === '/' || path === BASE.slice(0, -1)) {
+  if (BASE !== '/' && (path === '/' || path === BASE.slice(0, -1))) {
     return send(res, 302, '', { Location: BASE + url.search });
   }
   if (!path.startsWith(BASE)) {

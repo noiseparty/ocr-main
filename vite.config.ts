@@ -1,9 +1,9 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 
-// Served at https://www.skabene.id.lv/demo/ocr/ and Caddy passes the full path through,
+// Served at https://ocr.skabene.id.lv/ and Caddy passes the full path through,
 // so every asset URL must carry the prefix.
-const BASE = '/demo/ocr/';
+const BASE = '/';
 
 export default defineConfig({
   base: BASE,

@@ -1,5 +1,5 @@
 // Tesseract, entirely from our own origin. Every path tesseract.js would otherwise fetch
-// from jsDelivr (worker, wasm core, language data) is pointed at /demo/ocr/vendor/, which
+// from jsDelivr (worker, wasm core, language data) is pointed at /vendor/, which
 // scripts/copy-vendor.mjs fills at build time. The image goes to a Web Worker on this
 // machine and nowhere else.
 

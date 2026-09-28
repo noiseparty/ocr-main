@@ -6,7 +6,7 @@ cross-checked against each other. Every cell can be edited. Export goes to XLSX,
 JSON, or you can copy TSV to paste into Sheets or Excel. Several files at once end up in
 one combined sheet.
 
-Live at `https://www.skabene.id.lv/demo/ocr/`.
+Live at `https://ocr.skabene.id.lv/`.
 
 **Everything runs in the browser.** PDFs with a text layer are read by pdf.js. Scans and
 photos are read by Tesseract (WebAssembly, LSTM, English + Latvian models). All of these
@@ -38,7 +38,7 @@ Requires Node 22 and pnpm 10.
 
 ```bash
 pnpm install
-pnpm dev            # http://localhost:5173/demo/ocr/  (proxies /theme.css to the live site)
+pnpm dev            # http://localhost:5173/  (proxies /theme.css to the live site)
 pnpm test           # vitest: parser, dates, money, layout, exports, rate limiter
 pnpm typecheck
 ```
@@ -48,7 +48,7 @@ pnpm typecheck
 ```bash
 pnpm build                          # copies vendor runtimes, typechecks, bundles, compiles the server
 PORT=3101 node build/server/index.js
-# http://127.0.0.1:3101/demo/ocr/   (GET / redirects there; /demo/ocr/healthz → "ok")
+# http://127.0.0.1:3101/   (GET / redirects there; /healthz → "ok")
 
 pnpm e2e                            # optional: drives an installed Edge/Chrome through all four samples
 ```
@@ -77,18 +77,9 @@ docker compose up -d --build        # builds, publishes 127.0.0.1:3101 only
 
 - The image has two stages. The final stage holds no `node_modules`, only `dist/` (about
   23 MB, mostly the OCR core and models) and the compiled server. It runs as `node`,
-  read-only, with a healthcheck on `/demo/ocr/healthz`.
-- Caddy must pass the full path through, with no prefix stripping, and must sit outside
-  `forward_auth`. For example, add this inside the `www.skabene.id.lv` block, before the
-  shell's catch-all:
-
-  ```
-  handle /demo/ocr/* {
-      reverse_proxy 127.0.0.1:3101
-  }
-  ```
-
-  The rate limiter keys on the first `X-Forwarded-For` entry. The www block already strips
-  client-supplied values, so that entry is the real remote address.
+  read-only, with a healthcheck on `/healthz`.
+- Caddy fronts it on its own host, `ocr.skabene.id.lv`, strips client-supplied
+  `X-Forwarded-*` headers, and proxies `/theme.css` to the shell. The rate limiter keys on
+  the first `X-Forwarded-For` entry, so that entry is the real remote address.
 - The port is published on loopback only. Never use `"3101:3101"`, because Docker bypasses
   ufw.

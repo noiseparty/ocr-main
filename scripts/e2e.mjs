@@ -4,14 +4,14 @@
 // playwright-core — no browser download.
 //
 //   PORT=3101 node build/server/index.js &
-//   node scripts/e2e.mjs [http://127.0.0.1:3101/demo/ocr/]
+//   node scripts/e2e.mjs [http://127.0.0.1:3101/]
 //
 // BROWSER_PATH overrides the browser executable.
 
 import { chromium } from 'playwright-core';
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 
-const URL_ = process.argv[2] ?? 'http://127.0.0.1:3101/demo/ocr/';
+const URL_ = process.argv[2] ?? 'http://127.0.0.1:3101/';
 const CANDIDATES = [
   process.env.BROWSER_PATH,
   'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
