@@ -272,7 +272,7 @@ function buildPdf({ title, content, image }) {
     );
   }
   const stream = add(Buffer.concat([Buffer.from(`<< /Length ${content.length} >>\nstream\n`), content, Buffer.from('\nendstream')]));
-  const info = add(Buffer.concat([Buffer.from('<< /Title ('), pdfString(title), Buffer.from(') /Producer (Cosmic sample generator) >>')]));
+  const info = add(Buffer.concat([Buffer.from('<< /Title ('), pdfString(title), Buffer.from(') /Producer (Repo sample generator) >>')]));
   objs[catalog - 1] = Buffer.from(`<< /Type /Catalog /Pages ${pages} 0 R >>`);
   objs[pages - 1] = Buffer.from(`<< /Type /Pages /Kids [${page} 0 R] /Count 1 >>`);
   objs[page - 1] = Buffer.from(

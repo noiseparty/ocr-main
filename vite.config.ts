@@ -1,7 +1,7 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 
-// Served at https://ocr.skabene.id.lv/ and Caddy passes the full path through,
+// Served at https://ocr.repo.lv/ and Caddy passes the full path through,
 // so every asset URL must carry the prefix.
 const BASE = '/';
 
@@ -18,7 +18,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       // In production the shell serves /theme.css on the same origin. Locally, borrow it.
-      '/theme.css': { target: 'https://www.skabene.id.lv', changeOrigin: true },
+      '/theme.css': { target: 'https://www.repo.lv', changeOrigin: true },
     },
   },
   test: {

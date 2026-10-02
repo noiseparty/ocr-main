@@ -101,7 +101,7 @@ export function toTSV(t: Table): string {
 export function toJSON(docs: Doc[]): string {
   return JSON.stringify(
     {
-      generator: 'Receipt Reader — Cosmic demo',
+      generator: 'Receipt Reader — Repo demo',
       documents: docs.map((d) => {
         const r = d.receipt;
         return {

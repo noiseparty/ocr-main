@@ -1,4 +1,4 @@
-# Receipt Reader — Cosmic demo 01
+# Receipt Reader — Repo demo 01
 
 Receipts and invoices to spreadsheet rows. Drop a PDF or a photo, or pick one of four
 samples, and get the merchant, date, currency, subtotal, VAT, total and every line item,
@@ -6,7 +6,7 @@ cross-checked against each other. Every cell can be edited. Export goes to XLSX,
 JSON, or you can copy TSV to paste into Sheets or Excel. Several files at once end up in
 one combined sheet.
 
-Live at `https://ocr.skabene.id.lv/`.
+Live at `https://ocr.repo.lv/`.
 
 **Everything runs in the browser.** PDFs with a text layer are read by pdf.js. Scans and
 photos are read by Tesseract (WebAssembly, LSTM, English + Latvian models). All of these
@@ -78,7 +78,7 @@ docker compose up -d --build        # builds, publishes 127.0.0.1:3101 only
 - The image has two stages. The final stage holds no `node_modules`, only `dist/` (about
   23 MB, mostly the OCR core and models) and the compiled server. It runs as `node`,
   read-only, with a healthcheck on `/healthz`.
-- Caddy fronts it on its own host, `ocr.skabene.id.lv`, strips client-supplied
+- Caddy fronts it on its own host, `ocr.repo.lv`, strips client-supplied
   `X-Forwarded-*` headers, and proxies `/theme.css` to the shell. The rate limiter keys on
   the first `X-Forwarded-For` entry, so that entry is the real remote address.
 - The port is published on loopback only. Never use `"3101:3101"`, because Docker bypasses

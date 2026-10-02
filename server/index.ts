@@ -7,7 +7,7 @@ import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { clientIp, TokenBuckets } from './limits.js';
 
-/** Served at the root of ocr.skabene.id.lv. Set a prefix (with trailing slash) to mount it under a path. */
+/** Served at the root of ocr.repo.lv. Set a prefix (with trailing slash) to mount it under a path. */
 export const BASE: string = '/';
 const PORT = Number(process.env.PORT ?? 3101);
 const HOST = process.env.HOST ?? '0.0.0.0';
