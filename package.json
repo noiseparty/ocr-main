@@ -1,5 +1,5 @@
 {
-  "name": "cosmic-demo-ocr",
+  "name": "repo-demo-ocr",
   "version": "0.1.0",
   "private": true,
   "description": "Receipt Reader — receipts and invoices to spreadsheet rows, entirely in the browser.",

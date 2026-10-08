@@ -1,7 +1,7 @@
 services:
   ocr:
     build: .
-    image: cosmic-demo-ocr:latest
+    image: repo-demo-ocr:latest
     container_name: demo-ocr
     restart: unless-stopped
     # static files only; the OCR runs in the visitor's browser, not here
